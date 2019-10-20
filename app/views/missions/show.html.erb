@@ -1,0 +1,9 @@
+<%= link_to "任務列表", missions_path%>
+<p>
+名稱：<%= @mission.name %>
+</p>
+<p>
+內容：<%= @mission.content %>
+</p>
+<%= link_to "編輯任務", edit_mission_path(@mission)%>
+<%= link_to "刪除任務", mission_path(@mission), method: :delete, data: {confirm: "確定刪除嗎？？"}%>
