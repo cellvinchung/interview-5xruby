@@ -1,24 +1,40 @@
-# README
+# 五倍紅寶石題目
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## model關係圖
 
-Things you may want to cover:
+![model關係圖](https://i.imgur.com/A1kIvJz.jpg)
 
-* Ruby version
+## table schema
 
-* System dependencies
+### model: User
 
-* Configuration
+|欄位名稱|資料形態|
+|--|--|
+|name|string|
+|email|string|
+|password|string|
 
-* Database creation
+### model: Mission
 
-* Database initialization
+|欄位名稱|資料形態|
+|--|--|
+|user_id|integer|
+|name|string|
+|start_at|datetime|
+|end_at|datetime|
+|priority|integer|
+|status|integer|
+|content|text|
 
-* How to run the test suite
+### model: Tag
 
-* Services (job queues, cache servers, search engines, etc.)
+|欄位名稱|資料形態|
+|--|--|
+|name|string|
 
-* Deployment instructions
+### model: MissionTag
 
-* ...
+|欄位名稱|資料形態|
+|--|--|
+|tag_id|integer|
+|mission_id|integer|
