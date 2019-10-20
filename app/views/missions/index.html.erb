@@ -1,0 +1,23 @@
+<%= link_to "新增任務", new_mission_path%>
+<table>
+    <thead>
+    <tr>
+        <th>名稱</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+        <% @missions.each do |mission|%>
+        <tr>
+            <td>
+            <%= mission.name%>
+            </td>
+            <td>
+            <%= link_to "檢視", mission_path(mission)%>
+            <%= link_to "編輯", edit_mission_path(mission)%>
+            <%= link_to "刪除任務", mission_path(mission), method: :delete, data: {confirm: "確定刪除嗎？？"}%>
+            </td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>
