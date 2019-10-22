@@ -1,13 +1,27 @@
 <%= form_for(@mission) do |f|%>
+<% if @mission.errors.any? %>
+  <div id="error_explanation">
+    <ul>
+    <% @mission.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
 <p>
-<label for="">名稱</label>
+<%= f.label :name %>
 <%= f.text_field :name %>
 </p>
 <p>
-<label for="">內容</label>
+<%= f.label :content %>
 <%= f.text_area :content %>
 </p>
 <p>
-<%= f.submit %>
+<%= f.label :start_at %>
+<%= f.datetime_local_field :start_at %>
+</p>
+
+<p>
+<%= f.button t("submit") %>
 </p>
 <% end %>

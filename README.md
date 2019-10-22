@@ -1,5 +1,7 @@
 # 五倍紅寶石題目
 
+[![Build Status](https://travis-ci.org/cellvinchung/interview-5xruby.svg?branch=topic)](https://travis-ci.org/cellvinchung/interview-5xruby)
+
 ## model關係圖
 
 ![model關係圖](https://i.imgur.com/A1kIvJz.jpg)

@@ -1,0 +1,14 @@
+zh-TW:
+  activerecord:
+    models:
+      mission: "任務"
+    attributes:
+      mission:
+        name: "名稱"
+        content: "內容"
+        start_at: "開始時間"
+        end_at: "結束時間"
+        status: "狀態"
+        priority: "優先順序"
+        user_id: "使用者"
+        created_at: "建立時間"

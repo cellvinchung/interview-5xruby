@@ -1,21 +1,42 @@
-<%= link_to "新增任務", new_mission_path%>
+<%= link_to "#{t("new")}#{Mission.model_name.human}", new_mission_path%>
 <table>
     <thead>
     <tr>
-        <th>名稱</th>
-        <th>操作</th>
+        <th><%= Mission.human_attribute_name(:name)%></th>
+        <th><%= Mission.human_attribute_name(:start_at)%></th>
+        <th><%= Mission.human_attribute_name(:end_at)%></th>
+        <th><%= Mission.human_attribute_name(:priority)%></th>
+        <th><%= Mission.human_attribute_name(:status)%></th>
+        <th><%= Mission.human_attribute_name(:created_at)%><%= link_to t("sort"), url_for(action: :index, sort: :created_at)%></th>
+        <th><%= t("action")%></th>
     </tr>
     </thead>
     <tbody>
         <% @missions.each do |mission|%>
         <tr>
             <td>
-            <%= mission.name%>
+                <%= mission.name%>
             </td>
             <td>
-            <%= link_to "檢視", mission_path(mission)%>
-            <%= link_to "編輯", edit_mission_path(mission)%>
-            <%= link_to "刪除任務", mission_path(mission), method: :delete, data: {confirm: "確定刪除嗎？？"}%>
+                <%= mission.start_at&.strftime("%F %R")%>
+            </td>
+            <td>
+                <%= mission.end_at&.strftime("%F %R")%>
+            </td>
+            
+            <td>
+                <%= mission.priority%>
+            </td>
+            <td>
+                <%= mission.status%>
+            </td>
+            <td>
+                <%= mission.created_at.strftime("%F %R")%>
+            </td>
+            <td>
+            <%= link_to t("show"), mission_path(mission)%>
+            <%= link_to t("edit"), edit_mission_path(mission)%>
+            <%= link_to t("destroy"), mission_path(mission), method: :delete, data: {confirm: t("confirm")}%>
             </td>
         </tr>
         <% end %>
