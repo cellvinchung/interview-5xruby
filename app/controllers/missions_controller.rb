@@ -11,7 +11,7 @@ class MissionsController < ApplicationController
     end
     def create
         @mission = Mission.create(permit_params)
-        flash[:notice] = "建立成功"
+        flash[:notice] = "#{t("create")}#{t("success")}"
         redirect_to mission_path(@mission)
     end
     def edit
@@ -19,12 +19,12 @@ class MissionsController < ApplicationController
     end
     def update
         @mission.update(permit_params)
-        flash[:notice] = "更新成功"
+        flash[:notice] = "#{t("update")}#{t("success")}"
         redirect_to mission_path(@mission)
     end
     def destroy
         @mission.destroy
-        flash[:notice] = "刪除成功"
+        flash[:notice] = "#{t("destroy")}#{t("success")}"
         redirect_to missions_path
     end
     private

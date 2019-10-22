@@ -1,13 +1,13 @@
 <%= form_for(@mission) do |f|%>
 <p>
-<label for="">名稱</label>
+<%= f.label :name %>
 <%= f.text_field :name %>
 </p>
 <p>
-<label for="">內容</label>
+<%= f.label :content %>
 <%= f.text_area :content %>
 </p>
 <p>
-<%= f.submit %>
+<%= f.button t("submit") %>
 </p>
 <% end %>

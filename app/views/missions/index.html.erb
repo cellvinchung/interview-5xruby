@@ -1,9 +1,9 @@
-<%= link_to "新增任務", new_mission_path%>
+<%= link_to "#{t("new")}#{Mission.model_name.human}", new_mission_path%>
 <table>
     <thead>
     <tr>
-        <th>名稱</th>
-        <th>操作</th>
+        <th><%= Mission.human_attribute_name(:name)%></th>
+        <th><%= t("action")%></th>
     </tr>
     </thead>
     <tbody>
@@ -13,9 +13,9 @@
             <%= mission.name%>
             </td>
             <td>
-            <%= link_to "檢視", mission_path(mission)%>
-            <%= link_to "編輯", edit_mission_path(mission)%>
-            <%= link_to "刪除任務", mission_path(mission), method: :delete, data: {confirm: "確定刪除嗎？？"}%>
+            <%= link_to t("show"), mission_path(mission)%>
+            <%= link_to t("edit"), edit_mission_path(mission)%>
+            <%= link_to t("destroy"), mission_path(mission), method: :delete, data: {confirm: t("confirm")}%>
             </td>
         </tr>
         <% end %>
