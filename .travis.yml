@@ -7,9 +7,15 @@ rvm:
 bundler_args: --jobs 1 --retry 3
 
 script:
-
+  - bin/rake db:create RAILS_ENV=test
   - bin/rake db:migrate RAILS_ENV=test
 
   - bin/rake
 
 cache: bundler
+
+services:
+  - postgresql
+
+before_script:
+  - psql -c 'create database interview_5xruby_test;' -U deploy
