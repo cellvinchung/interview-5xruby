@@ -3,6 +3,11 @@
     <thead>
     <tr>
         <th><%= Mission.human_attribute_name(:name)%></th>
+        <th><%= Mission.human_attribute_name(:start_at)%></th>
+        <th><%= Mission.human_attribute_name(:end_at)%></th>
+        <th><%= Mission.human_attribute_name(:priority)%></th>
+        <th><%= Mission.human_attribute_name(:status)%></th>
+        <th><%= Mission.human_attribute_name(:created_at)%><%= link_to t("sort"), url_for(action: :index, sort: :created_at)%></th>
         <th><%= t("action")%></th>
     </tr>
     </thead>
@@ -10,7 +15,23 @@
         <% @missions.each do |mission|%>
         <tr>
             <td>
-            <%= mission.name%>
+                <%= mission.name%>
+            </td>
+            <td>
+                <%= mission.start_at&.strftime("%F %R")%>
+            </td>
+            <td>
+                <%= mission.end_at&.strftime("%F %R")%>
+            </td>
+            
+            <td>
+                <%= mission.priority%>
+            </td>
+            <td>
+                <%= mission.status%>
+            </td>
+            <td>
+                <%= mission.created_at.strftime("%F %R")%>
             </td>
             <td>
             <%= link_to t("show"), mission_path(mission)%>

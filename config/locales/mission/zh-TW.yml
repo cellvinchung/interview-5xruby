@@ -11,3 +11,4 @@ zh-TW:
         status: "狀態"
         priority: "優先順序"
         user_id: "使用者"
+        created_at: "建立時間"

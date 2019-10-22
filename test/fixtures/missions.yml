@@ -1,9 +1,8 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  content: MyText
-
-two:
-  name: MyString
-  content: MyText
+regular:
+  name: "正常任務"
+  content: "正常內容"
+no_name:
+  name: ""
+  content: ""
