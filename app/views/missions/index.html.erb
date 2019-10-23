@@ -3,8 +3,8 @@
     <thead>
     <tr>
         <th><%= Mission.human_attribute_name(:name)%></th>
-        <th><%= Mission.human_attribute_name(:start_at)%></th>
-        <th><%= Mission.human_attribute_name(:end_at)%></th>
+        <th><%= Mission.human_attribute_name(:start_at)%><%= link_to t("sort"), url_for(action: :index, sort: :start_at)%></th>
+        <th><%= Mission.human_attribute_name(:end_at)%><%= link_to t("sort"), url_for(action: :index, sort: :end_at)%></th>
         <th><%= Mission.human_attribute_name(:priority)%></th>
         <th><%= Mission.human_attribute_name(:status)%></th>
         <th><%= Mission.human_attribute_name(:created_at)%><%= link_to t("sort"), url_for(action: :index, sort: :created_at)%></th>

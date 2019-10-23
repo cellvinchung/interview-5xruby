@@ -12,3 +12,9 @@ zh-TW:
         priority: "優先順序"
         user_id: "使用者"
         created_at: "建立時間"
+    errors:
+      models:
+        mission:
+          attributes:
+            end_at:
+              after_start_at: "需晚於開始時間"

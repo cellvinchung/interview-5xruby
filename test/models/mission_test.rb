@@ -26,11 +26,19 @@ class MissionTest < ActiveSupport::TestCase
   test "任務列表，並可依優先順序、開始時間及結束時間等進行排序" do 
   end
   test "name必填" do
-    mission = Mission.new(start_at: @current_time)
+    mission = missions(:no_name)
     assert_not mission.valid?
   end
   test "start_at必填" do 
-    mission = Mission.new(name: "asdfjlh")
+    mission = missions(:no_start_at)
+    assert_not mission.valid?
+  end
+  test "end_at必填" do 
+    mission = missions(:no_end_at)
+    assert_not mission.valid?
+  end
+  test "end_at要晚於start_at" do 
+    mission = missions(:end_at_earlier_than_start_at)
     assert_not mission.valid?
   end
 end
