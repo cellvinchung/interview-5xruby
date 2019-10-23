@@ -1,8 +1,22 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-regular:
+regular: &regular
   name: "正常任務"
   content: "正常內容"
+  start_at: "2019-10-01"
+  end_at: "2019-10-31"
+  priority: "0"
+  status: "0"
 no_name:
+  <<: *regular
   name: ""
-  content: ""
+no_start_at:
+  <<: *regular
+  start_at: ""
+no_end_at:
+  <<: *regular
+  end_at: ""
+end_at_earlier_than_start_at:
+  <<: *regular
+  start_at: "2019-10-31"
+  end_at: "2019-10-01"

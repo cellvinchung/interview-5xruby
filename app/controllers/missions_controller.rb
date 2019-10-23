@@ -5,6 +5,10 @@ class MissionsController < ApplicationController
         case params[:sort]
         when "created_at"
             @missions = @missions.reorder(created_at: :desc)
+        when "start_at"
+            @missions = @missions.reorder(start_at: :desc)
+         when "end_at"
+            @missions = @missions.reorder(end_at: :desc)
         end
     end
     def show
@@ -40,7 +44,8 @@ class MissionsController < ApplicationController
         params.require(:mission).permit(
             :name,
             :content,
-            :start_at
+            :start_at,
+            :end_at
         )
     end
     def set_mission
