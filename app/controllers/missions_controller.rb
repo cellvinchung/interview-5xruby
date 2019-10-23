@@ -1,15 +1,8 @@
 class MissionsController < ApplicationController
     before_action :set_mission, except: [:index, :new, :create]
     def index
-        @missions = Mission.all
-        case params[:sort]
-        when "created_at"
-            @missions = @missions.reorder(created_at: :desc)
-        when "start_at"
-            @missions = @missions.reorder(start_at: :desc)
-         when "end_at"
-            @missions = @missions.reorder(end_at: :desc)
-        end
+        @q = Mission.ransack(params[:q])
+        @missions = @q.result
     end
     def show
         
@@ -45,7 +38,8 @@ class MissionsController < ApplicationController
             :name,
             :content,
             :start_at,
-            :end_at
+            :end_at,
+            :status
         )
     end
     def set_mission

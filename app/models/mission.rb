@@ -1,4 +1,5 @@
 class Mission < ApplicationRecord
+    include AASM
     validates :name, presence: true
     validates :start_at, presence: true
     validates :end_at, presence: true
@@ -9,6 +10,23 @@ class Mission < ApplicationRecord
     def end_at_after_start_at?
         if end_at < start_at
             errors.add :end_at, :after_start_at
+        end
+    end
+    enum status: {
+        pending: 0,
+        working: 1,
+        finished: 2
+    }
+    aasm column: :status do 
+        state :pending, initial: true
+        state :working
+        state :finished
+
+        event :start do 
+            transitions from: [:pending], to: :working
+        end
+        event :finish do
+            transitions from: [:pending, :working], to: :finished
         end
     end
 end

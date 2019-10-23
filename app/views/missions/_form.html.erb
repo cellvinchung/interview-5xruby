@@ -24,7 +24,10 @@
 <%= f.label :end_at %>
 <%= f.datetime_local_field :end_at %>
 </p>
-
+<p>
+<%= f.label :status %>
+<%= f.select :status, Mission.statuses.keys.map{|k| [Mission.human_attribute_name(:"status/#{k}"),k]} %>
+</p>
 <p>
 <%= f.button t("submit") %>
 </p>

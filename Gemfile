@@ -52,4 +52,6 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-gem "rails-i18n"
+gem "rails-i18n", '~> 6.0.0'
+gem 'aasm', '~> 5.0', '>= 5.0.6'
+gem 'ransack', github: 'activerecord-hackery/ransack'
