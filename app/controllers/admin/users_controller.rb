@@ -7,7 +7,6 @@ class Admin::UsersController < MissionsController
     def show
         @q = @user.missions.ransack(params[:q])
         @missions = @q.result.page(params[:page])
-        render template: "missions/index"
     end
     def new
     end
