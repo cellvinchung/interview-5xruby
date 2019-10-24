@@ -1,4 +1,5 @@
 zh-TW:
+  app_name: "簡易任務管理"
   index: "列表"
   show: "檢視"
   new: "新增"
@@ -17,4 +18,7 @@ zh-TW:
   logout: "登出"
   processing: "處理中..."
   please_log_in: "請先登入！"
+  require_admin: "權限不足"
   search: "搜尋"
+  admin: "管理"
+  at_least_one_admin: "至少需一位管理者"

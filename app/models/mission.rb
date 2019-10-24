@@ -1,5 +1,5 @@
 class Mission < ApplicationRecord
-    belongs_to :user
+    belongs_to :user, counter_cache: true
     include AASM
     validates :name, presence: true
     validates :start_at, presence: true
