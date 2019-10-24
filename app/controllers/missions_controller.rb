@@ -1,5 +1,5 @@
 class MissionsController < ApplicationController
-    before_action :set_mission, except: [:index, :new, :create]
+    before_action :set_mission, except: [:index]
     before_action :authenticate_user!
 
     def index
@@ -8,10 +8,8 @@ class MissionsController < ApplicationController
         @missions = @missions.page(params[:page])
     end
     def show
-        
     end
     def new
-        @mission = current_user.missions.new
     end
     def create
         @mission = current_user.missions.new(permit_params)
@@ -39,9 +37,6 @@ class MissionsController < ApplicationController
         redirect_to missions_path
     end
 
-    def authenticate_user!
-        redirect_to login_path, alert: t("please_log_in") if !user_signed_in?
-    end
     private
     def permit_params
         params.require(:mission).permit(
@@ -54,6 +49,9 @@ class MissionsController < ApplicationController
         )
     end
     def set_mission
-        @mission = current_user.missions.find(params[:id])
+        @mission = current_user.missions.find_by(id: params[:id]) || current_user.missions.new
+    end
+    def authenticate_user!
+        redirect_to login_path, alert: t("please_log_in") if !user_signed_in?
     end
 end

@@ -7,3 +7,8 @@ zh-TW:
         name: "名稱"
         email: "Email"
         password: "密碼"
+        password_confirmation: "確認密碼"
+        missions_count: "任務數量"
+        role: "角色"
+        role/admin: "管理者"
+        role/common: "一般"

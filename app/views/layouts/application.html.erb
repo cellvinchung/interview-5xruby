@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
   <head>
-    <title>Interview5xruby</title>
+    <title><%= t("app_name")%></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta charset="utf-8">
@@ -12,7 +12,7 @@
 
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Navbar</a>
+  <a class="navbar-brand" href="#"><%= t("app_name")%></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -20,15 +20,30 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="<%= root_path%>"><%= t("index")%></a>
+        <a class="nav-link" href="<%= root_path%>"><%= Mission.model_name.human%><%= t("index")%></a>
       </li>
-      <li class="nav-item">
-        <% if user_signed_in? %>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <%= t("admin")%>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
+          <%= link_to "#{User.model_name.human}#{t("index")}", admin_users_path, class: "dropdown-item"%>
+        </div>
+      </li>
+      <% if user_signed_in? %>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <%= current_user.name%>您好
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
           <%= link_to t("logout"), logout_path, method: :delete, class: "nav-link", data: {confirm: t("confirm")}%>
-        <% else %>
-          <%= link_to t("login"), login_path, class: "nav-link"%>
-        <% end %>
+        </div>
       </li>
+      <% else %>
+      <li class="nav-item">
+        <%= link_to t("login"), login_path, class: "nav-link"%>
+      </li>
+      <% end %>
     </ul>
     
   </div>

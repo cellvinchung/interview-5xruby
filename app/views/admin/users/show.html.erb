@@ -1,41 +1,4 @@
-<%= search_form_for(@q, class: "my-3") do |f| %>
 <div class="card">
-    <div class="card-body">
-        <div class="row align-items-center">
-            <div class="col-3">
-                <div class="form-group">
-                    <%= f.label :name_cont %>
-                    <%= f.search_field :name_cont, class: "form-control" %>
-                </div>
-            </div>
-            <div class="col-3">
-                <div class="form-group">
-                    <%= f.label :status_eq %>
-                    <%= f.select :status_eq, Mission.statuses.keys.map{|k,v| [Mission.human_attribute_name(:"status/#{k}"),v]}, {include_blank: t("all")}, class: "form-control" %>
-                </div>
-            </div>
-            <div class="col-3">
-                <div class="form-group">
-                    <%= f.label :priority_eq %>
-                    <%= f.select :priority_eq, Mission.priorities.keys.map{|k,v| [Mission.human_attribute_name(:"priority/#{k}"),v]}, {include_blank: t("all")}, class: "form-control" %>
-                </div>
-            </div>
-            <div class="col-1">
-                <div class="form-group">
-                    <label for="">&nbsp;</label>
-                    <%= f.button t("search"), class: "btn btn-success btn-sm form-control"  %>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<% end %>
-<%= link_to "#{t("new")}#{Mission.model_name.human}", new_mission_path, class: "btn btn-primary"%>
-<div class="card">
-<div class="card-header">
-    <%= Mission.model_name.human%><%= t("index")%>
-</div>
 <table class="table">
     <thead>
     <tr>
