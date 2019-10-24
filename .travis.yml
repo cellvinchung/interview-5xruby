@@ -7,10 +7,11 @@ rvm:
 bundler_args: --jobs 1 --retry 3
 
 script:
-  - bin/rake db:create RAILS_ENV=test
-  - bin/rake db:migrate RAILS_ENV=test
-
-  - rspec
+  - export RAILS_ENV=test
+  - bundle exec rake db:create 
+  - bundle exec rake db:migrate 
+  - bundle exec rails webpacker:compile
+  - bundle exec rake rspec
 
 cache: bundler
 
