@@ -61,3 +61,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "rails-i18n", '~> 6.0.0'
 gem 'aasm', '~> 5.0', '>= 5.0.6'
 gem 'ransack', github: 'activerecord-hackery/ransack'
+gem 'kaminari'
+gem "kaminari-i18n"
+gem 'jquery-rails'
+gem 'bootstrap', '~> 4.3.1'

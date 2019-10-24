@@ -1,9 +1,22 @@
-<%= link_to t("index"), missions_path%>
-<p>
-<%= Mission.human_attribute_name(:name)%>：<%= @mission.name %>
-</p>
-<p>
-<%= Mission.human_attribute_name(:content)%>：<%= @mission.content %>
-</p>
-<%= link_to t("edit"), edit_mission_path(@mission)%>
-<%= link_to t("destroy"), mission_path(@mission), method: :delete, data: {confirm: t("confirm")}%>
+<%= link_to t("index"), missions_path, class: "btn btn-link"%>
+<dl class="row">
+  <dt class="col-3"><%= Mission.human_attribute_name(:name)%></dt>
+  <dd class="col-9"><%= @mission.name %></dd>
+
+  <dt class="col-3"><%= Mission.human_attribute_name(:content)%></dt>
+  <dd class="col-9"><%== @mission.content %></dd>
+
+  <dt class="col-sm-3"><%= Mission.human_attribute_name(:start_at)%></dt>
+  <dd class="col-sm-9"><%= @mission.start_at&.strftime("%F %R") %></dd>
+
+  <dt class="col-sm-3"><%= Mission.human_attribute_name(:end_at)%></dt>
+  <dd class="col-sm-9"><%= @mission.end_at&.strftime("%F %R") %></dd>
+
+  <dt class="col-sm-3"><%= Mission.human_attribute_name(:priority)%></dt>
+  <dd class="col-sm-9"><%= Mission.human_attribute_name("priority/#{@mission.priority}")%></dd>
+
+  <dt class="col-sm-3"><%= Mission.human_attribute_name(:status)%></dt>
+  <dd class="col-sm-9"><%= Mission.human_attribute_name("status/#{@mission.status}")%></dd>
+</dl>
+<%= link_to t("edit"), edit_mission_path(@mission), class: "btn btn-warning"%>
+<%= link_to t("destroy"), mission_path(@mission), method: :delete, data: {confirm: t("confirm")}, class: "btn btn-danger"%>
