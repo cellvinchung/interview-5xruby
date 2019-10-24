@@ -1,4 +1,5 @@
 class Mission < ApplicationRecord
+    belongs_to :user
     include AASM
     validates :name, presence: true
     validates :start_at, presence: true

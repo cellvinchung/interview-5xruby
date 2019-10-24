@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 RSpec.feature "Missions", type: :feature do
+  let(:user){
+    create(:user)
+  }
   context "新增" do 
     before(:each) do 
       visit new_mission_path
@@ -25,7 +28,7 @@ RSpec.feature "Missions", type: :feature do
   end
   context "更新" do 
     let!(:mission) {
-      Mission.create(name: "嗨你好", start_at: Time.current, end_at: Time.current+1.day, status: :pending)
+      user.missions.create(name: "嗨你好", start_at: Time.current, end_at: Time.current+1.day, status: :pending)
     }
     before(:each) do 
       visit edit_mission_path(mission)
@@ -46,7 +49,7 @@ RSpec.feature "Missions", type: :feature do
   end 
   context "刪除" do 
     scenario "成功" do 
-      mission = Mission.create(name: "嗨你好", start_at: Time.current, end_at: Time.current+1.day, status: :pending)
+      mission = user.missions.create(name: "嗨你好", start_at: Time.current, end_at: Time.current+1.day, status: :pending)
       visit missions_path
       expect {click_link I18n.t("destroy")}.to change(Mission, :count).by(-1)
     end
@@ -63,9 +66,9 @@ RSpec.feature "Missions", type: :feature do
       }
     }
     before(:each) do 
-      @mission1 = Mission.create(params)
-      @mission2 = Mission.create(params.merge(start_at: "2019-01-02",end_at: "2019-09-31"))
-      @mission3 = Mission.create(params.merge(start_at: "2019-02-02",end_at: "2019-12-31"))
+      @mission1 = user.missions.create(params)
+      @mission2 = user.missions.create(params.merge(start_at: "2019-01-02",end_at: "2019-09-31"))
+      @mission3 = user.missions.create(params.merge(start_at: "2019-02-02",end_at: "2019-12-31"))
     end
     scenario "建立時間" do 
       visit missions_path(q: {s: "created_at desc"})
@@ -95,9 +98,9 @@ RSpec.feature "Missions", type: :feature do
       }
     }
     before(:each) do 
-      @mission1 = Mission.create(params.merge(name: "繳信用卡費", priority: :medium))
-      @mission2 = Mission.create(params.merge(name: "參加默默會", status: :working))
-      @mission3 = Mission.create(params.merge(name: "運動", status: :finished))
+      @mission1 = user.missions.create(params.merge(name: "繳信用卡費", priority: :medium))
+      @mission2 = user.missions.create(params.merge(name: "參加默默會", status: :working))
+      @mission3 = user.missions.create(params.merge(name: "運動", status: :finished))
     end
     scenario "名稱" do 
       visit missions_path(q: {name_cont: "默默會"})

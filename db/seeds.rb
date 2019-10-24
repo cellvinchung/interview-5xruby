@@ -5,3 +5,14 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+if User.none?
+    password = SecureRandom.hex
+    user = User.create(
+        name: "示範使用者",
+        email: "demo@example.com",
+        password: password
+    )
+    Mission.where(user_id: nil).each do |mission|
+        mission.update(user: user)
+    end
+end

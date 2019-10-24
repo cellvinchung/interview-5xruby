@@ -2,7 +2,7 @@ class MissionsController < ApplicationController
     before_action :set_mission, except: [:index, :new, :create]
     def index
         @q = Mission.ransack(params[:q])
-        @missions = @q.result
+        @missions = @q.result.includes(:user)
         @missions = @missions.page(params[:page])
     end
     def show
