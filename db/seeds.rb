@@ -10,7 +10,8 @@ if User.none?
     user = User.create(
         name: "示範使用者",
         email: "demo@example.com",
-        password: password
+        password: password,
+        role: :admin
     )
     Mission.where(user_id: nil).each do |mission|
         mission.update(user: user)
