@@ -4,6 +4,9 @@ RSpec.describe Mission, type: :model do
   let(:mission) {
     build(:mission)
   }
+  let(:user){
+    create(:user)
+  }
   context "validation驗證" do 
     it "name必填" do
       mission.name = nil

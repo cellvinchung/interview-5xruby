@@ -13,3 +13,8 @@ zh-TW:
   submit: "送出"
   sort: "排序"
   all: "全部"
+  login: "登入"
+  logout: "登出"
+  processing: "處理中..."
+  please_log_in: "請先登入！"
+  search: "搜尋"
