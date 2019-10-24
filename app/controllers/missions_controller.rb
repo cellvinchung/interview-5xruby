@@ -23,9 +23,12 @@ class MissionsController < ApplicationController
         
     end
     def update
-        @mission.update(permit_params)
-        flash[:notice] = "#{t("update")}#{t("success")}"
-        redirect_to mission_path(@mission)
+        if @mission.update(permit_params)
+            flash[:notice] = "#{t("update")}#{t("success")}"
+            redirect_to mission_path(@mission)
+        else
+            render "edit"
+        end
     end
     def destroy
         @mission.destroy
