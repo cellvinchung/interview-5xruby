@@ -17,6 +17,11 @@ class Mission < ApplicationRecord
         working: 1,
         finished: 2
     }
+    enum priority: {
+        low: 0,
+        medium: 1,
+        high: 2
+    }
     aasm column: :status do 
         state :pending, initial: true
         state :working

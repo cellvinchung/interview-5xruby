@@ -13,6 +13,9 @@ zh-TW:
         status/working: "進行中"
         status/finished: "完成"
         priority: "優先順序"
+        priority/high: "高"
+        priority/medium: "中"
+        priority/low: "低"
         user_id: "使用者"
         created_at: "建立時間"
     errors:

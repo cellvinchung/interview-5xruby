@@ -42,7 +42,8 @@ class MissionsController < ApplicationController
             :content,
             :start_at,
             :end_at,
-            :status
+            :status,
+            :priority
         )
     end
     def set_mission
