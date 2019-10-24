@@ -3,6 +3,7 @@ class MissionsController < ApplicationController
     def index
         @q = Mission.ransack(params[:q])
         @missions = @q.result
+        @missions = @missions.page(params[:page])
     end
     def show
         

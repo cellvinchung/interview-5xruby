@@ -1,20 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-TW">
   <head>
     <title>Interview5xruby</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
     <% flash.each do |key, value| %>
-    <p>
-    <%= value %>
-    </p>
+    <div class="alert <%= flash_class(key) %> alert-dismissible fade show" role="alert" data-turbolinks="false">
+      <%= value %>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
     <% end %>
-    <%= yield %>
+    
+    <div class="container">
+      <%= yield %>
+    </div>
   </body>
 </html>
