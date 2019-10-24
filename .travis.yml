@@ -11,7 +11,7 @@ script:
   - bundle exec rake db:create 
   - bundle exec rake db:migrate 
   - bundle exec rails webpacker:compile
-  - rspec
+  - bundle exec rspec
 
 cache: bundler
 
