@@ -58,7 +58,7 @@ RSpec.feature "Missions", type: :feature do
         content: "正常內容",
         start_at: "2019-10-02",
         end_at: "2019-10-31",
-        priority: "0",
+        priority: :high,
         status: :pending
       }
     }
@@ -66,18 +66,21 @@ RSpec.feature "Missions", type: :feature do
       @mission1 = Mission.create(params)
       @mission2 = Mission.create(params.merge(start_at: "2019-01-02",end_at: "2019-09-31"))
       @mission3 = Mission.create(params.merge(start_at: "2019-02-02",end_at: "2019-12-31"))
-      visit missions_path
     end
-    scenario "預設建立時間" do 
-      expect(Mission.all).to eq([@mission1, @mission2, @mission3])
+    scenario "建立時間" do 
+      visit missions_path(q: {s: "created_at desc"})
+      missions = Mission.ransack({s: "created_at desc"}).result
+      expect(missions).to eq([@mission3, @mission2, @mission1])
     end
     scenario "開始時間" do 
-      click_link Mission.human_attribute_name(:start_at)
-      expect(Mission.order(start_at: :desc)).to eq([@mission1, @mission3, @mission2])
+      visit missions_path(q: {s: "start_at desc"})
+      missions = Mission.ransack({s: "start_at desc"}).result
+      expect(missions).to eq([@mission1, @mission3, @mission2])
     end
     scenario "結束時間" do 
-      click_link Mission.human_attribute_name(:end_at)
-      expect(Mission.order(end_at: :desc)).to eq([@mission3, @mission1, @mission2])
+      visit missions_path(q: {s: "end_at desc"})
+      missions = Mission.ransack({s: "end_at desc"}).result
+      expect(missions).to eq([@mission3, @mission1, @mission2])
     end
   end
   context "查詢" do 
@@ -87,12 +90,12 @@ RSpec.feature "Missions", type: :feature do
         content: "正常內容",
         start_at: "2019-10-02",
         end_at: "2019-10-31",
-        priority: "0",
+        priority: :high,
         status: :pending
       }
     }
     before(:each) do 
-      @mission1 = Mission.create(params.merge(name: "繳信用卡費"))
+      @mission1 = Mission.create(params.merge(name: "繳信用卡費", priority: :medium))
       @mission2 = Mission.create(params.merge(name: "參加默默會", status: :working))
       @mission3 = Mission.create(params.merge(name: "運動", status: :finished))
     end
@@ -107,6 +110,12 @@ RSpec.feature "Missions", type: :feature do
       missions = Mission.ransack({status_eq: 2}).result
       
       expect(missions).to eq([@mission3])
+    end
+    scenario "優先順序" do 
+      visit missions_path(q: {priority_eq: 1})
+      missions = Mission.ransack({priority_eq: 1}).result
+      
+      expect(missions).to eq([@mission1])
     end
   end
 end

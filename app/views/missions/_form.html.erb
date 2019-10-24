@@ -29,6 +29,10 @@
 <%= f.select :status, Mission.statuses.keys.map{|k| [Mission.human_attribute_name(:"status/#{k}"),k]} %>
 </p>
 <p>
+<%= f.label :priority %>
+<%= f.select :priority, Mission.priorities.keys.map{|k| [Mission.human_attribute_name(:"priority/#{k}"),k]} %>
+</p>
+<p>
 <%= f.button t("submit") %>
 </p>
 <% end %>
