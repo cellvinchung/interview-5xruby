@@ -33,6 +33,6 @@
 <%= f.select :priority, Mission.priorities.keys.map{|k| [Mission.human_attribute_name(:"priority/#{k}"),k]}, {}, class: "form-control" %>
 </div>
 <div class="form-group">
-<%= f.button t("submit"), class: "btn btn-success" %>
+<%= f.button t("submit"), class: "btn btn-success", data: {disable_with: t("processing")} %>
 </div>
 <% end %>
