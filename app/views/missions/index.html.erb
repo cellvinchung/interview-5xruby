@@ -1,13 +1,27 @@
 <%= link_to "#{t("new")}#{Mission.model_name.human}", new_mission_path%>
+<%= search_form_for @q do |f| %>
+  <%= f.label :name_cont %>
+  <%= f.search_field :name_cont %>
+  <%= f.label :status_eq %>
+  <%= select(:q, :status_eq, Mission.statuses.map{|k,v| [Mission.human_attribute_name(:"status/#{k}"),v]}, include_blank: t("all")) %>
+
+  <%= f.button t("submit")  %>
+<% end %>
 <table>
     <thead>
     <tr>
         <th><%= Mission.human_attribute_name(:name)%></th>
-        <th><%= Mission.human_attribute_name(:start_at)%><%= link_to t("sort"), url_for(action: :index, sort: :start_at)%></th>
-        <th><%= Mission.human_attribute_name(:end_at)%><%= link_to t("sort"), url_for(action: :index, sort: :end_at)%></th>
+        <th>
+            <%= sort_link(@q, :start_at, Mission.human_attribute_name(:start_at), default_order: :desc) %>
+        </th>
+        <th>
+            <%= sort_link(@q, :end_at, Mission.human_attribute_name(:end_at), default_order: :desc) %>
+        </th>
         <th><%= Mission.human_attribute_name(:priority)%></th>
         <th><%= Mission.human_attribute_name(:status)%></th>
-        <th><%= Mission.human_attribute_name(:created_at)%><%= link_to t("sort"), url_for(action: :index, sort: :created_at)%></th>
+        <th>
+            <%= sort_link(@q, :created_at, Mission.human_attribute_name(:created_at), default_order: :desc) %>
+        </th>
         <th><%= t("action")%></th>
     </tr>
     </thead>
@@ -28,7 +42,7 @@
                 <%= mission.priority%>
             </td>
             <td>
-                <%= mission.status%>
+                <%= Mission.human_attribute_name("status/#{mission.status}")%>
             </td>
             <td>
                 <%= mission.created_at.strftime("%F %R")%>
